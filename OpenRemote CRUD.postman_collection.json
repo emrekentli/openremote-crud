@@ -1,0 +1,171 @@
+{
+	"info": {
+		"_postman_id": "bc07ab63-6e93-41d0-89fa-461e255121a0",
+		"name": "OpenRemote CRUD",
+		"description": "OpenRemote cihaz CRUD, attribute update ve çoklu cihaz listeleme. Backend servis JWT istemez.",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "21845927"
+	},
+	"item": [
+		{
+			"name": "Create Device",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"let resp = pm.response.json();\r",
+							"if (resp && resp.data && resp.data.id) {\r",
+							"    pm.collectionVariables.set(\"device_id\", resp.data.id);\r",
+							"    console.log(\"device_id set:\", resp.data.id);\r",
+							"} else if (resp && resp.id) {\r",
+							"    pm.collectionVariables.set(\"device_id\", resp.id);\r",
+							"    console.log(\"device_id set:\", resp.id);\r",
+							"} else {\r",
+							"    console.warn(\"id field not found in response\");\r",
+							"}"
+						],
+						"type": "text/javascript",
+						"packages": {}
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n  \"name\": \"Ofis Sıcaklık Sensörü\",\n  \"realm\": \"tenant\",\n  \"attributes\": {\n    \"temperature\": {\n      \"type\": \"number\",\n      \"value\": 22.5,\n      \"name\": \"temperature\"\n    }\n  }\n}"
+				},
+				"url": {
+					"raw": "http://localhost:8080/api/device",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"api",
+						"device"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Get Device By Id",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:8080/api/device/{{device_id}}",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"api",
+						"device",
+						"{{device_id}}"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Update Device",
+			"request": {
+				"method": "PUT",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n  \"name\": \"Ofis Sıcaklık Sensörü (güncel)\",\n  \"realm\": \"tenant\",\n  \"attributes\": {\n    \"temperature\": {\n      \"type\": \"number\",\n      \"value\": 25,\n      \"name\": \"temperature\"\n    },\n    \"humidity\": {\n      \"type\": \"number\",\n      \"value\": 50,\n      \"name\": \"humidity\"\n    }\n  }\n}"
+				},
+				"url": {
+					"raw": "http://localhost:8080/api/device/{{device_id}}",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"api",
+						"device",
+						"{{device_id}}"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "List Devices",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n  \"recursive\": true,\r\n  \"select\": {\r\n    \"basic\": true\r\n  },\r\n   \"realm\": {\r\n    \"name\": \"tenant\"\r\n  },\r\n  \"orderBy\": {\r\n    \"property\": \"CREATED_ON\",\r\n    \"descending\": true\r\n  },\r\n  \"limit\": 0\r\n}\r\n",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:8080/api/device",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"api",
+						"device"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Delete Device",
+			"request": {
+				"method": "DELETE",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:8080/api/device/{{device_id}}",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"api",
+						"device",
+						"{{device_id}}"
+					]
+				}
+			},
+			"response": []
+		}
+	],
+	"variable": [
+		{
+			"key": "device_id",
+			"value": ""
+		}
+	]
+}
