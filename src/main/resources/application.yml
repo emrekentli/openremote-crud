@@ -1,0 +1,17 @@
+spring:
+  application:
+    name: openremote-crud
+openremote:
+  url: https://167.235.134.86
+  client-id: serviceuser
+  client-secret: k9y9wb0luL1ZtivJqMsReIryoAa7ZWtt
+springdoc:
+  api-docs:
+    path: /v3/api-docs
+  swagger-ui:
+    path: /swagger-ui.html
+    enabled: true
+    tags-sorter: alpha
+    operations-sorter: alpha
+    display-request-duration: true
+    filter: true
