@@ -1,10 +1,12 @@
 spring:
   application:
     name: openremote-crud
+
 openremote:
-  url: https://167.235.134.86
-  client-id: serviceuser
-  client-secret: k9y9wb0luL1ZtivJqMsReIryoAa7ZWtt
+  url: ${OPENREMOTE_URL:https://openremote.example.com}
+  client-id: ${OPENREMOTE_CLIENT_ID:serviceuser}
+  client-secret: ${OPENREMOTE_CLIENT_SECRET:secret}
+
 springdoc:
   api-docs:
     path: /v3/api-docs

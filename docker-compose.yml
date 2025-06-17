@@ -1,0 +1,13 @@
+version: '3.8'
+services:
+  openremote-crud:
+    build: .
+    image: openremote-crud:latest
+    container_name: openremote-crud
+    environment:
+      - OPENREMOTE_URL=${OPENREMOTE_URL}
+      - OPENREMOTE_CLIENT_ID=${OPENREMOTE_CLIENT_ID}
+      - OPENREMOTE_CLIENT_SECRET=${OPENREMOTE_CLIENT_SECRET}
+    ports:
+      - "8080:8080"
+    restart: unless-stopped
