@@ -12,7 +12,6 @@ import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
-
 @Tag(name = "Device API", description = "Cihaz CRUD işlemleri")
 @RestController
 @RequestMapping("/api/device")
@@ -28,10 +27,11 @@ public class DeviceController {
         return ResponseBuilder.build(created);
     }
 
-    @Operation(summary = "Tüm cihazları (isteğe göre filtrelenmiş) listele")
-    @GetMapping
+    @Operation(summary = "Gelişmiş sorgu ile cihazları listele")
+    @PostMapping("/query")
     public Response<List<DeviceResponse>> listDevices(@RequestBody DeviceQueryRequest query) {
-        return ResponseBuilder.build(deviceService.listDevices(query));
+        List<DeviceResponse> result = deviceService.listDevices(query);
+        return ResponseBuilder.build(result);
     }
 
     @Operation(summary = "Cihaz bilgisi getir")
