@@ -1,14 +1,14 @@
 package com.emrekentli.openremotecrud.service;
 
-import com.emrekentli.openremotecrud.dto.*;
+import com.emrekentli.openremotecrud.dto.DeviceCreateRequest;
+import com.emrekentli.openremotecrud.dto.DeviceQueryRequest;
+import com.emrekentli.openremotecrud.dto.DeviceResponse;
+import com.emrekentli.openremotecrud.dto.DeviceUpdateRequest;
 import com.emrekentli.openremotecrud.feign.OpenRemoteAssetClient;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
-import static com.emrekentli.openremotecrud.util.MapUtils.putIfNotNull;
 
-import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
 
 @Service
 @RequiredArgsConstructor

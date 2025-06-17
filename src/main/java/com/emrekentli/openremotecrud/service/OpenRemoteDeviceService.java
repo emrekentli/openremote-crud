@@ -1,7 +1,7 @@
 package com.emrekentli.openremotecrud.service;
 
-import com.emrekentli.openremotecrud.dto.DeviceQueryRequest;
 import com.emrekentli.openremotecrud.dto.DeviceCreateRequest;
+import com.emrekentli.openremotecrud.dto.DeviceQueryRequest;
 import com.emrekentli.openremotecrud.dto.DeviceResponse;
 import com.emrekentli.openremotecrud.dto.DeviceUpdateRequest;
 
